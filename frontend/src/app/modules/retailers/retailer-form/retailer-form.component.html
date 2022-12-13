@@ -1,0 +1,89 @@
+<h1>{{ title }}</h1>
+<mat-divider></mat-divider>
+<mat-divider></mat-divider>
+<form class="form-container" [formGroup]="retailerForm" (ngSubmit)="save()">
+    <div class="form-item">
+        <div><label>Retailer Name</label></div>
+        <mat-form-field appearance="legacy">
+            <mat-label>Retailer Name</mat-label>
+            <input matInput formControlName="name">
+            <mat-icon matSuffix>store</mat-icon>
+            <mat-hint *ngIf="isNew && !isInvalidInput('name')">
+                This name will be used to create the Big Query Dataset
+            </mat-hint>
+            <mat-hint *ngIf="isInvalidInput('name')">
+                Please enter a valid Retailer Name
+            </mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="form-item">
+        <div><label>BQ GA Table</label></div>
+        <mat-form-field appearance="legacy">
+            <mat-label>BQ GA Table</mat-label>
+            <input matInput formControlName="bq_ga_table">
+            <mat-icon matSuffix>table_chart</mat-icon>
+            <mat-hint *ngIf="isInvalidInput('bq_ga_table')">
+                Please enter a valid BigQuery Google Analytics table
+            </mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="form-item">
+        <div><label>Timezone</label></div>
+        <mat-form-field appearance="legacy">
+            <mat-label>Timezone</mat-label>
+            <mat-select formControlName="time_zone">
+                <input placeholder="Search..." matInput type="text"
+                (keyup)="applyTimezoneFilter($event)" class="input-filter">
+                <mat-option></mat-option>
+                <mat-option *ngFor="let timezone of selectedTimezones" [value]="timezone">
+                    {{timezone}}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>schedule</mat-icon>
+            <mat-hint *ngIf="isInvalidInput('time_zone')">
+                Please enter a valid <a target="_blank"
+                    href="https://developers.google.com/adwords/api/docs/appendix/codes-formats#expandable-22">Timezone</a>
+            </mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="form-item">
+        <div><label>Currency</label></div>
+        <mat-form-field appearance="legacy">
+            <mat-label>Currency</mat-label>
+            <mat-select formControlName="currency">
+                <input placeholder="Search..." matInput type="text"
+                (keyup)="applyCurrencyCodesFilter($event)" class="input-filter">
+                <mat-option></mat-option>
+                <mat-option *ngFor="let currency of selectedCurrencyCodes" [value]="currency">
+                    {{currency}}
+                </mat-option>
+            </mat-select>
+            <mat-icon matSuffix>attach_money</mat-icon>
+            <mat-hint *ngIf="isInvalidInput('currency')">
+                Please enter a valid <a target="_blank"
+                    href="https://developers.google.com/adwords/api/docs/appendix/codes-formats#expandable-18">Currency</a>
+            </mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="form-item">
+        <div><label>Co-op Max Backfill</label></div>
+        <mat-form-field appearance="legacy">
+            <mat-label>Co-op Max Backfill</mat-label>
+            <input matInput formControlName="coop_max_backfill">
+            <mat-icon matSuffix>arrow_upward</mat-icon>
+            <mat-hint *ngIf="isInvalidInput('coop_max_backfill')">
+                Please enter a valid Co-op Max Backfill value (30-180 days)
+            </mat-hint>
+        </mat-form-field>
+    </div>
+    <div class="form-item">
+        Active
+        <mat-slide-toggle color="accent" formControlName="is_active">
+        </mat-slide-toggle>
+    </div>
+    <div class="form-buttons-container">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!retailerForm.valid">Save</button>
+        <button mat-raised-button color="primary" routerLink="/retailers">Cancel</button>
+    </div>
+    <mat-spinner class="spinner" *ngIf="showSpinner" style="position:fixed"></mat-spinner>
+</form>

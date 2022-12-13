@@ -1,0 +1,30 @@
+<mat-card class="card">
+    <mat-card-header>
+        <div mat-card-avatar class="card-header-image"></div>
+        <mat-card-title>{{ retailer.name }}</mat-card-title>
+        <mat-card-subtitle>Created at {{ retailer.created_at | date }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="card-content-container">
+            <div class="card-content-item-container">
+                <p><label><strong>Google Analytics BQ table: </strong> </label>{{ retailer.bq_ga_table }}</p>
+                <p><label><strong>BQ Dataset: </strong></label>{{ retailer.name }}</p>
+                <p><label><strong>Timezone: </strong></label>{{ retailer.time_zone }}</p>
+            </div>
+            <div class="card-content-item-container">
+                <p><label><strong>Co-op Max Backfill: </strong></label>{{ retailer.coop_max_backfill }}</p>
+                <p><label><strong>Active: </strong></label>{{ retailer.is_active }}</p>
+            </div>
+            <div class="card-content-buttons-container">
+                <button mat-raised-button color="primary" [routerLink]="['/retailers', retailer.name, 'edit']">
+                    <mat-icon>edit</mat-icon>
+                    Edit
+                </button>
+                <button mat-raised-button color="accent" (click)="deleteRetailer(retailer.name)">
+                    <mat-icon>remove</mat-icon>
+                    Remove
+                </button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>

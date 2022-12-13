@@ -1,0 +1,58 @@
+
+html, body { height: 100%; }
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.small-box, .large-box {
+    display: flex;
+    justify-content: center;
+    margin: 16px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.small-box {
+    height: 100px;
+    width: 100px;
+  }
+
+.large-box {
+    height: auto;
+    width: 70%;
+    margin: 1% auto;
+}
+
+.card {
+    max-width: 1200px;
+    margin-top: 20px;
+}
+
+.spinner {
+    margin: 0 auto;
+    position: fixed;
+    left: 46%;
+    top: 40%;
+}
+
+app-retailers {
+    width: 90%;
+}
+
+app-co-op-configurations {
+    width: 90%;
+}
+
+app-co-op-configuration-form {
+    width: 90%;
+}
+
+app-retailer-form {
+    width: 90%;
+}
+
+app-logs {
+    width: 90%;
+}
